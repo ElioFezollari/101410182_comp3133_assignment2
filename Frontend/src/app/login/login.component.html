@@ -1,0 +1,40 @@
+<div class="auth-wrapper">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth">
+    <h1>Login Form</h1>
+
+    <div class="auth-nav">
+      <a href="login" class="auth-active">Login</a>
+      <a href="signup">Sign Up</a>
+    </div>
+
+    <div class="auth-form">
+      <div>
+        <input type="email" placeholder="Email" formControlName="email">
+        <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+          <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</small>
+          <small *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email address.</small>
+        </div>
+      </div>
+
+      <div>
+        <input type="password" placeholder="Password" formControlName="password">
+        <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+          <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
+          <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Minimum 6 characters required.</small>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+
+    <div class="submit-button-div">
+      <button type="submit" class="submit-button">Login</button>
+    </div>
+  </form>
+</div>

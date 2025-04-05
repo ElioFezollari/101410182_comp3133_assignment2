@@ -1,0 +1,55 @@
+<div class="auth-wrapper">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="auth">
+    <h1>Sign Up Form</h1>
+
+    <div class="auth-nav">
+      <a href="login">Login</a>
+      <a href="signup" class="auth-active">Sign Up</a>
+    </div>
+
+    <div class="auth-form">
+      <div>
+        <input type="text" placeholder="Username" formControlName="username">
+        <div *ngIf="signupForm.get('username')?.touched && signupForm.get('username')?.invalid">
+          <small>Username is required.</small>
+        </div>
+      </div>
+
+      <div>
+        <input type="email" placeholder="Email" formControlName="email">
+        <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
+          <small *ngIf="signupForm.get('email')?.errors?.['required']">Email is required.</small>
+          <small *ngIf="signupForm.get('email')?.errors?.['email']">Invalid email address.</small>
+        </div>
+      </div>
+
+      <div>
+        <input type="password" placeholder="Password" formControlName="password">
+        <div *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid">
+          <small *ngIf="signupForm.get('password')?.errors?.['required']">Password is required.</small>
+          <small *ngIf="signupForm.get('password')?.errors?.['minlength']">Minimum 6 characters required.</small>
+        </div>
+      </div>
+
+      <div>
+        <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+        <div *ngIf="signupForm.get('confirmPassword')?.touched && signupForm.hasError('mismatch')">
+          <small>Passwords must match.</small>
+        </div>
+      </div>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+
+    </div>
+
+    <div class="submit-button-div">
+      <button type="submit" class="submit-button">Sign Up</button>
+    </div>
+  </form>
+</div>
