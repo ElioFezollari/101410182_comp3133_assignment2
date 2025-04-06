@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-employee-create',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,NavbarComponent],
   templateUrl: './employee-create.component.html',
   styleUrls: ['./employee-create.component.css']
 })

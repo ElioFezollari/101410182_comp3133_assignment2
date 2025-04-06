@@ -1,10 +1,19 @@
+<app-navbar></app-navbar>
 <div class="table-wrapper">
   <div class="content">
-
-    <!-- Create Button -->
     <div class="top-actions">
       <h2 class="page-title">Employee List</h2>
-      <button (click)="goToCreate()" class="create-button">+ Create Employee</button>
+      <div class="button-group">
+        <button (click)="goToCreate()" class="create-button">+ Create Employee</button>
+      </div>
+    </div>
+
+
+    <div class="search-filters">
+      <input [(ngModel)]="searchDesignation" placeholder="Search by Designation" class="search-input" />
+      <input [(ngModel)]="searchDepartment" placeholder="Search by Department" class="search-input" />
+      <button (click)="searchEmployees()" class="search-button">Search</button>
+      <button (click)="resetSearch()" class="reset-button">Reset</button>
     </div>
 
     <div *ngIf="loading">Loading employees...</div>
@@ -33,7 +42,7 @@
           <td>{{ emp.designation }}</td>
           <td>{{ emp.salary }}</td>
           <td>{{ emp.department }}</td>
-          <td>{{ emp.date_of_joining }}</td>
+          <td>{{ emp.date_of_joining | date: 'mediumDate' }}</td>
           <td class="button-td">
             <button (click)="goToView(emp.id)">View</button>
             <button (click)="goToUpdate(emp.id)">Update</button>

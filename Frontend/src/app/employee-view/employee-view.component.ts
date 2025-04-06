@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { Apollo, gql } from 'apollo-angular';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-employee-view',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,NavbarComponent],
   templateUrl: './employee-view.component.html',
   styleUrls: ['./employee-view.component.css']
 })
