@@ -1,0 +1,21 @@
+<div class="view-wrapper">
+    <div class="card">
+      <h2>Employee Details</h2>
+  
+      <div *ngIf="loading">Loading employee details...</div>
+      <div *ngIf="error">{{ error.message }}</div>
+  
+      <div *ngIf="employee">
+        <p><strong>First Name:</strong> {{ employee.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ employee.last_name }}</p>
+        <p><strong>Email:</strong> {{ employee.email }}</p>
+        <p><strong>Gender:</strong> {{ employee.gender }}</p>
+        <p><strong>Designation:</strong> {{ employee.designation }}</p>
+        <p><strong>Salary:</strong> {{ employee.salary }}</p>
+        <p><strong>Department:</strong> {{ employee.department }}</p>
+        <p><strong>Date of Joining:</strong> {{ employee.date_of_joining }}</p>
+      </div>
+      <button (click)="goBack()" class="back-button">Back to List</button>
+    </div>
+  </div>
+  

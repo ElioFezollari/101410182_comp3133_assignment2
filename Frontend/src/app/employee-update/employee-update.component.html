@@ -1,0 +1,20 @@
+<div class="update-wrapper">
+    <div class="card">
+      <h2>Update Employee</h2>
+  
+      <form [formGroup]="employeeForm" (ngSubmit)="onUpdate()">
+        <input formControlName="first_name" placeholder="First Name" />
+        <input formControlName="last_name" placeholder="Last Name" />
+        <input formControlName="email" placeholder="Email" />
+        <input formControlName="gender" placeholder="Gender" />
+        <input formControlName="designation" placeholder="Designation" />
+        <input formControlName="salary" placeholder="Salary" type="number" />
+        <input formControlName="department" placeholder="Department" />
+  
+        <button type="submit" class="submit-button">Update Employee</button>
+      </form>
+  
+      <button (click)="goBack()" class="back-button">Back to List</button>
+    </div>
+  </div>
+  

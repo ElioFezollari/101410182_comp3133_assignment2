@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Apollo, gql } from 'apollo-angular'; 
+import { Apollo, gql } from 'apollo-angular';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +14,15 @@ import { Apollo, gql } from 'apollo-angular';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  errorMessage: string | null = null; 
+  errorMessage: string | null = null;
   successMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private apollo: Apollo) {
+  constructor(
+    private fb: FormBuilder,
+    private apollo: Apollo,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -43,17 +50,18 @@ export class LoginComponent {
 
       this.apollo.query({
         query: LOGIN_QUERY,
-        variables: {
-          email: email,
-          password: password
-        },
-        errorPolicy: 'all' 
+        variables: { email, password },
+        errorPolicy: 'all'
       }).subscribe({
         next: (result: any) => {
           if (result.errors && result.errors.length > 0) {
             this.errorMessage = result.errors[0].message || 'Unknown server error';
           } else if (result.data && result.data.user) {
-            this.successMessage = `Welcome ${result.data.user.username}!`;
+            const user = result.data.user;
+            this.authService.setUser(user);
+            this.successMessage = `Welcome ${user.username}!`;
+            this.loginForm.reset();
+            this.router.navigate(['/employee']);
           } else {
             this.errorMessage = 'Unexpected error occurred';
           }

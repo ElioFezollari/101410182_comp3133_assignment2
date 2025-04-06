@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Apollo, gql } from 'apollo-angular';
+import { AuthService } from '../services/auth.service'; 
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,11 @@ export class SignupComponent {
   errorMessage: string | null = null;
   successMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private apollo: Apollo) {
+  constructor(
+    private fb: FormBuilder,
+    private apollo: Apollo,
+    private authService: AuthService
+  ) {
     this.signupForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -43,8 +48,7 @@ export class SignupComponent {
             id
             username
             email
-            created_at
-            updated_at
+            token  
           }
         }
       `;
@@ -57,10 +61,14 @@ export class SignupComponent {
         next: (result: any) => {
           if (result.errors && result.errors.length > 0) {
             this.errorMessage = result.errors.map((e: any) => e.message).join(', ');
-            return; 
+            return;
           }
 
           if (result.data && result.data.addUser) {
+            const token = result.data.addUser.token;
+            if (token) {
+              this.authService.setToken(token);
+            }
             this.successMessage = `Signup successful! Welcome ${result.data.addUser.username}!`;
             this.signupForm.reset();
           } else {
@@ -71,7 +79,6 @@ export class SignupComponent {
           this.errorMessage = error.message || 'Server unreachable during signup.';
         }
       });
-
     } else {
       this.signupForm.markAllAsTouched();
       this.errorMessage = 'Please fill out the form correctly before submitting.';
