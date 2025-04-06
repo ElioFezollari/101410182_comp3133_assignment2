@@ -1,59 +1,55 @@
-# 101410182Comp3133Assignment2
+# Employee Management System - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+### Overview
+This is the **frontend application** developed as part of the **Employee Management System** project.  
+The application provides a clean and interactive user interface for managing employee data, enabling users to view, search, create, update, and delete employee records.  
+The frontend communicates with the backend GraphQL API to fetch and manipulate data.
 
-## Development server
+As part of the development process, GitHub was used for version control, and the project follows modern DevOps best practices to ensure maintainable and scalable deployment pipelines.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+### Technologies Used
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Angular**: Frontend web application framework for building dynamic single-page applications.
+- **Apollo Angular**: GraphQL client for Angular used to query and mutate data efficiently.
+- **GraphQL**: API query language that enables flexible and efficient data fetching.
+- **HTML5 & CSS3**: Markup and styling to create responsive, user-friendly interfaces.
+- **TypeScript**: Strongly typed language that builds on JavaScript, used throughout the Angular project.
+- **GitHub**: Version control system to track and manage the project source code.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Key Features
 
-```bash
-ng generate component component-name
-```
+- **Employee List View**: View all employees in a tabular format with detailed information.
+- **Employee Search**: Search employees by department or designation using GraphQL search queries.
+- **Create Employee**: Add a new employee to the database with complete details.
+- **Update Employee**: Modify existing employee information.
+- **Delete Employee**: Remove an employee record securely.
+- **View Employee Details**: See a detailed profile view of an employee.
+- **Authentication Flow**: Logout functionality and token-based session management.
+- **Reusable Navbar**: A global navbar available across all pages for consistent navigation and logout functionality.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+### Project Structure
 
-## Building
+- **Components**: Modular, standalone Angular components like Employee List, Employee View, Employee Create, Update, and Navbar.
+- **GraphQL Queries and Mutations**: Integrated via Apollo Angular to communicate with the backend API.
+- **Routing**: Angular Router handles navigation between different pages (list, view, update, create, etc.).
+- **State Management**: Apollo Client manages query states like loading, errors, and success responses.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### Running the Frontend Locally
 
 ```bash
-ng e2e
-```
+# Install dependencies
+npm install
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+# Start the Angular application
+ng serve --open
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+# The app will be available at:
+# http://localhost:4200
