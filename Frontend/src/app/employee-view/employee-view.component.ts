@@ -37,19 +37,26 @@ export class EmployeeViewComponent {
           salary
           department
           date_of_joining
+          employee_photo 
         }
       }
     `;
-
+  
     this.apollo.use('employee').query<any>({
       query: GET_EMPLOYEE_BY_ID,
       variables: { id }
     }).subscribe(({ data, loading, error }) => {
-      this.employee = data?.getEmployeeById;
+      if (data?.getEmployeeById) {
+        this.employee = {
+          ...data.getEmployeeById,
+          date_of_joining: new Date(+data.getEmployeeById.date_of_joining)
+        };
+      }
       this.loading = loading;
       this.error = error;
     });
   }
+  
 
   goBack() {
     this.router.navigate(['/employee']);

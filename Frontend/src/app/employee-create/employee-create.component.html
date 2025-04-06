@@ -1,0 +1,31 @@
+<div class="create-wrapper">
+    <div class="card">
+      <h2>Create New Employee</h2>
+  
+      <div *ngIf="formErrorMessage" class="error-message">
+        {{ formErrorMessage }}
+      </div>
+  
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+  
+      <form [formGroup]="employeeForm" (ngSubmit)="onCreate()">
+        <input formControlName="first_name" placeholder="First Name" />
+        <input formControlName="last_name" placeholder="Last Name" />
+        <input formControlName="email" placeholder="Email" />
+        <input formControlName="gender" placeholder="Gender" />
+        <input formControlName="designation" placeholder="Designation" />
+        <input formControlName="salary" placeholder="Salary" type="number" />
+        <input formControlName="department" placeholder="Department" />
+        <input formControlName="date_of_joining" type="date" placeholder="Date of Joining" />
+  
+        <input type="file" (change)="onFileSelected($event)" />
+  
+        <button type="submit" class="submit-button">Create Employee</button>
+      </form>
+  
+      <button (click)="goBack()" class="back-button">Back to List</button>
+    </div>
+  </div>
+  

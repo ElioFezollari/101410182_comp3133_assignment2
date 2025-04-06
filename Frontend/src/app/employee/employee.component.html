@@ -1,11 +1,11 @@
-<header class="header">
-  <h1>Elio Fezollari</h1>
-</header>
-
 <div class="table-wrapper">
   <div class="content">
-    
-    <h2 class="page-title">Employee List</h2>
+
+    <!-- Create Button -->
+    <div class="top-actions">
+      <h2 class="page-title">Employee List</h2>
+      <button (click)="goToCreate()" class="create-button">+ Create Employee</button>
+    </div>
 
     <div *ngIf="loading">Loading employees...</div>
     <div *ngIf="error">Error loading employees: {{ error.message }}</div>

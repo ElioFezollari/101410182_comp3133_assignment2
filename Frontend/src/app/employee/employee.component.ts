@@ -45,7 +45,7 @@ export class EmployeeComponent {
 
     this.apollo.use('employee').watchQuery<any>({
       query: GET_ALL_EMPLOYEES,
-      fetchPolicy: 'network-only' 
+      fetchPolicy: 'network-only'
     })
     .valueChanges
     .subscribe(({ data, loading, error }) => {
@@ -63,6 +63,10 @@ export class EmployeeComponent {
     this.router.navigate(['/employee', 'update', id]);
   }
 
+  goToCreate() {
+    this.router.navigate(['/employee/create']);
+  }
+
   deleteEmployee(id: string) {
     if (!confirm('Are you sure you want to delete this employee?')) return;
 
@@ -77,7 +81,7 @@ export class EmployeeComponent {
       variables: { id }
     }).subscribe(() => {
       alert('Employee deleted successfully!');
-      this.fetchEmployees(); 
+      this.fetchEmployees();
     });
   }
 }

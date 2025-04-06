@@ -4,6 +4,7 @@ import { SignupComponent } from './signup/signup.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { EmployeeUpdateComponent } from './employee-update/employee-update.component';
+import { EmployeeCreateComponent } from './employee-create/employee-create.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: 'employee', component: EmployeeComponent },
   { path: 'employee/view/:id', component: EmployeeViewComponent },
   { path: 'employee/update/:id', component: EmployeeUpdateComponent },
+  { path: 'employee/create', component: EmployeeCreateComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },  
   { path: '**', redirectTo: '/login' }                
 ];
